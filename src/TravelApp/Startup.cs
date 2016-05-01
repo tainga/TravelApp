@@ -6,16 +6,28 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
+using TravelApp.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.PlatformAbstractions;
 
-namespace WebApplication2
-{
-    public class Startup
+public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+
+        public static IConfigurationRoot Configuration;
+        public Startup(IApplicationEnvironment appEnv)
+        {
+            var builder = new ConfigurationBuilder()
+              .SetBasePath(appEnv.ApplicationBasePath)
+              .AddJsonFile("config.json");
+
+            Configuration = builder.Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddEntityFramework().AddSqlServer().AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"])
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,5 +54,6 @@ namespace WebApplication2
 
         // Entry point for the application.
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+
+
     }
-}
