@@ -8,8 +8,8 @@ using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
-using TravelApp.Models;
 using Microsoft.Data.Entity;
+using TravelApp.Models;
 
 namespace TravelApp
 {

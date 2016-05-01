@@ -6,7 +6,7 @@ using Microsoft.Data.Entity;
 
 namespace TravelApp.Models
 {
-    public class DatabaseContext : DbContext
+    public class TripContext : DbContext
     {
        
         public DbSet<Trip> Trip { get; set; }
@@ -19,7 +19,7 @@ namespace TravelApp.Models
             base.OnConfiguring(optionsBuilder);
 
         }
-        public DatabaseContext()
+        public TripContext()
         {
             Database.EnsureCreated();
         }
