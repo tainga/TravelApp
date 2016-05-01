@@ -1,0 +1,7 @@
+﻿{
+  "Data": {
+    "DefaultConnection": {
+      "TripsConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=TravelDB;Trusted_Connection=True;"
+    }
+  }
+}
