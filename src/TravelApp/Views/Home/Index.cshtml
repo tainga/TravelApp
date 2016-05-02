@@ -20,11 +20,11 @@
         foreach(var trip in ViewBag.test)
         {
             <div>
-                @trip.Name;
+                @trip.Name
                 <ul>
                     @foreach (var stop in trip.Stops)
                     {
-                        <li>@stop.Name;</li>
+                        <li>@stop.Name</li>
                     }
                 </ul>
             </div>

@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
 </head>
 <body>
     <div id="sidebar">
-        <img src="~/img/user1.png" alt="headshot" class="headshot" />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="list-group table-of-contents">
+                    
+                    <h4 class="list-group-item"><img src="~/img/unicorn.png" alt="headshot" class="headshot" />     Uni J. Corn</h4>
+                    <a asp-controller="Home" asp-action="Index" class="list-group-item">Home</a>
+                    <a class="list-group-item" asp-controller="Home" asp-action="About">About</a>
+                    <a class="list-group-item" asp-controller="Home" asp-action="Contact">Contact</a>
+                </div>
+            </div>
+        </div>
+        @*<img src="~/img/user1.png" alt="headshot" class="headshot" />
         <span>Bill G.</span>
         <ul class="menu">
             <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
             <li><a asp-controller="Home" asp-action="About">About</a></li>
             <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-        </ul>
+        </ul>*@
     </div>
     <div id="wrapper">
         <div id="main">
@@ -25,7 +37,7 @@
         </div>
      </div>
             <div id="footer">
-                &copy; 2016 CSIS 4135 Ltd.
+                &copy; Anastasia Taing
             </div>
 </body>
 </html>
