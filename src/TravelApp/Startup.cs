@@ -31,6 +31,7 @@ namespace TravelApp
             services.AddMvc();
             services.AddEntityFramework().AddSqlServer().AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:TripsConnectionString"]));
             services.AddTransient<TripsSeedData>();
+            services.AddScoped<TripsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

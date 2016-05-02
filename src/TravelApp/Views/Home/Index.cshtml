@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TravelApp.Models.Trip>
            
  <p>Getting started.</p>
 
@@ -17,7 +17,7 @@
 <h2>Trips:</h2>
 <div>
     @{ 
-        foreach(var trip in ViewBag.test)
+        foreach(var trip in Model)
         {
             <div>
                 @trip.Name
