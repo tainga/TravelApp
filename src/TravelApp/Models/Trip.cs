@@ -12,7 +12,7 @@ namespace TravelApp.Models
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
-        public String UserName { get; set; }
+        public string UserName { get; set; }
         public ICollection<Stop> Stops { get; set; }
     }
 }

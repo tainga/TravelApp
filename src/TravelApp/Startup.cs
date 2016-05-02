@@ -30,10 +30,11 @@ namespace TravelApp
         {
             services.AddMvc();
             services.AddEntityFramework().AddSqlServer().AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:TripsConnectionString"]));
+            services.AddTransient<TripsSeedData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, TripsSeedData seed)
         {
             app.UseIISPlatformHandler();
             //app.UseDefaultFiles();
@@ -52,6 +53,8 @@ namespace TravelApp
             {
                 await context.Response.WriteAsync("Hello New World!");
             });
+
+            seed.InsertSeedData();
         }
 
         // Entry point for the application.

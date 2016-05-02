@@ -9,7 +9,7 @@ namespace TravelApp.Models
     public class TripContext : DbContext
     {
        
-        public DbSet<Trip> Trip { get; set; }
+        public DbSet<Trip> Trips { get; set; }
         public DbSet<Stop> Stops { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
