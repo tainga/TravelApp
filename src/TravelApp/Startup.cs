@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using TravelApp.Models;
+using AutoMapper;
 
 namespace TravelApp
 {
@@ -48,6 +49,11 @@ namespace TravelApp
                         template: "{controller}/{action}/{id?}",
                         defaults: new { controller = "Home", action = "Index" }
                      );
+                }
+            );
+            Mapper.Initialize(config =>
+                {
+                    config.CreateMap<Trip, TripViewModel>().ReverseMap();
                 }
             );
             app.Run(async (context) =>

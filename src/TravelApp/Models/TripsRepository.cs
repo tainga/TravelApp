@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Entity;
+﻿using AutoMapper;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,19 @@ namespace TravelApp.Models
         {
             var trips = db.Trips.Include(a => a.Stops);
             return trips;
+        }
+
+        public Trip GetTrip(int id)
+        {
+            var trip = db.Trips.Include(a => a.Stops).Where(a => a.ID == id).Single();
+            return trip;
+        }
+
+        public Trip Post(Trip trip)
+        {
+            db.Trips.Add(trip);
+            db.SaveChanges();
+            return trip;
         }
     }
 }
