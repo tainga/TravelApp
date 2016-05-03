@@ -6,6 +6,7 @@ using Microsoft.AspNet.Mvc;
 using TravelApp.Models;
 using Microsoft.Data.Entity;
 using AutoMapper;
+using TravelApp.Services;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,14 +15,14 @@ namespace TravelApp.Controllers.API
     [Route("api/[controller]/{tripName}")]
     public class StopsController : Controller
     {
-        private TripContext db = new TripContext();
-        
-        // GET: api/values
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        private TripContext db;
+        private CoordinateService cs;
+
+        public StopsController(TripContext tp, CoordinateService service)
+        {
+            db = tp;
+            cs = service;
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -34,16 +35,26 @@ namespace TravelApp.Controllers.API
 
         // POST api/values
         [HttpPost]
-        public JsonResult Post(TripViewModel trip, StopViewModel stop)
+        public async Task <JsonResult> Post(TripViewModel trip, StopViewModel stop)
         {
             var aTrip = Mapper.Map<Trip>(trip);
             var aStop = Mapper.Map<Stop>(stop);
+
+            var longlat = await cs.Lookup(aStop.Name);
+            if (longlat.Success)
+            {
+                aStop.Longitude = longlat.Longitude;
+                aStop.Latitude = longlat.Latitude;
+            }
+
             aTrip.Stops.Add(aStop);
             if (ModelState.IsValid)
             {
                 db.Trips.Update(aTrip);
                 db.SaveChanges();
             }
+
+            
             var result = Mapper.Map<TripViewModel>(aTrip);
             return Json(result);
         }
