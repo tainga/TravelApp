@@ -12,6 +12,7 @@ using Microsoft.Data.Entity;
 using TravelApp.Models;
 using AutoMapper;
 using TravelApp.Services;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TravelApp
 {
@@ -35,7 +36,16 @@ namespace TravelApp
             services.AddTransient<TripsSeedData>();
             services.AddScoped<TripsRepository>();
             services.AddScoped<CoordinateService>();
+            services.AddIdentity<AppUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Password.RequireUppercase = false;
+                config.Password.RequireNonLetterOrDigit = false;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            }).AddEntityFrameworkStores<TripContext>();
         }
+    
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, TripsSeedData seed)
