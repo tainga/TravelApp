@@ -54,6 +54,7 @@ namespace TravelApp
             Mapper.Initialize(config =>
                 {
                     config.CreateMap<Trip, TripViewModel>().ReverseMap();
+                    config.CreateMap<Stop, StopViewModel>().ReverseMap();
                 }
             );
             app.Run(async (context) =>
