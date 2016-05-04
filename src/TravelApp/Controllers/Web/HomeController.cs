@@ -11,17 +11,14 @@ using Microsoft.AspNet.Authorization;
 
 namespace TravelApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private TripContext db = new TripContext();
         // GET: /<controller>/
         public IActionResult Index()
         {
-            //var Trips = db.Trips.Include(a => a.Stops);
-            //ViewBag.test = Trips;
             var repo = new TripsRepository(db);
-            //ViewBag.test = repo;
             return View(repo.GetAllTrips());
         }
         public IActionResult About()

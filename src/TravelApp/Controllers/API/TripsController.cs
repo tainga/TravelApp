@@ -20,7 +20,7 @@ namespace TravelApp.Controllers.API
         [HttpGet]
         public JsonResult Get()
         {
-            var trips = db.Trips;
+            var trips = db.Trips.Include(a => a.Stops);
             var results = Mapper.Map<IEnumerable<TripViewModel>>(trips);
             return Json(results);
         }
@@ -29,7 +29,7 @@ namespace TravelApp.Controllers.API
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            var trip = db.Trips.Where(a => a.ID == id).Single();
+            var trip = db.Trips.Include(a => a.Stops).Where(a => a.ID == id).Single();
             var results = Mapper.Map<Trip>(trip);
             return Json(results);
         }
@@ -49,16 +49,16 @@ namespace TravelApp.Controllers.API
             return Json(result);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

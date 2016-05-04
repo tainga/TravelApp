@@ -1,6 +1,6 @@
 ﻿using TravelApp.Models;
 
-namespace TravelApp.Controllers.Auth
+namespace TravelApp.ViewModels
 {
     public class LoginViewModel
     {

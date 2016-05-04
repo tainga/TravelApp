@@ -6,6 +6,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Identity;
 using TravelApp.Models;
 using Microsoft.AspNet.Mvc.Rendering;
+using TravelApp.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +23,8 @@ namespace TravelApp.Controllers.Auth
             this.signInManager = signInManager;
             this.userManager = userManager;
         }
+
+
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
