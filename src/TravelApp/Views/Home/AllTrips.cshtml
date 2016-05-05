@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TravelApp.Models.Trip>
+
+
+@*<form>
+        <div>
+            <label>Date</label>
+            <input />
+        </div>
+        <div>
+            <label>Location</label>
+            <input />
+        </div>
+        <div><input type="submit" value="Add" /></div>
+    </form>*@
+<br />
+<h2>Trips:</h2>
+<div>
+    <ul>
+        @{
+            foreach (var trip in Model)
+            {
+                <li>
+                    @Html.ActionLink(trip.Name, "Trip", new { id = trip.ID })
+                </li>
+
+            }
+        }
+    </ul>
+</div>

@@ -1,34 +1,6 @@
-﻿@model IEnumerable<TravelApp.Models.Trip>
-           
- <p>Getting started.</p>
+﻿<h3>Welcome to Travel App</h3>
+<br /><br />
+<div>You are currently logged in as Uni J. Corn. If you're not a unicorn, log in or register.</div>
 
-            @*<form>
-                <div>
-                    <label>Date</label>
-                    <input />
-                </div>
-                <div>
-                    <label>Location</label>
-                    <input />
-                </div>
-                <div><input type="submit" value="Add" /></div>
-            </form>*@
-<br />
-<h2>Trips:</h2>
-<div>
-    @{ 
-        foreach(var trip in Model)
-        {
-            <div>
-                @trip.Name
-                <ul>
-                    @foreach (var stop in trip.Stops)
-                    {
-                        <li>@stop.Name</li>
-                    }
-                </ul>
-            </div>
-
-        }
-    }
-</div>
+<br /><br />
+<button onclick="location.href='@Url.Action("AllTrips")';return false;" class="btn btn-success">View all trips</button>

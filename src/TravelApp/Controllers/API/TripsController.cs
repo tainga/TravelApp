@@ -39,7 +39,7 @@ namespace TravelApp.Controllers.API
         public JsonResult Post(TripViewModel trip)
         {
             var newTrip = Mapper.Map<Trip>(trip);
-            newTrip.UserName = "user1";
+            //newTrip.UserName = "user1";
             if (ModelState.IsValid)
             {
                 db.Trips.Add(newTrip);

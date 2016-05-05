@@ -1,0 +1,53 @@
+﻿@model TravelApp.Models.Trip
+
+
+<br />
+<h2>Trip: @Model.Name</h2>
+<div>
+    <ul>
+        @{
+            foreach (var stop in Model.Stops)
+            {
+                <li>
+                    <em>@stop.Name</em>,   Arrival: @stop.Arrival.ToShortDateString();
+                </li>
+
+            }
+        }
+    </ul>
+</div>
+
+<div class="well">Map was almost here...</div>
+<div class="">But at least API <a href="~/API/trips/@Model.ID">works!</a></div>
+
+<script>
+    function showMap(stops) {
+
+        if (stops && stops.length > 0) {
+
+            var mapStops = _.map(stops, function (item) {
+                return {
+                    lat: item.Latitude,
+                    long: item.Longitude,
+                    info: item.Name
+                };
+            });
+
+            // Show Map
+            travelMap.createMap({
+                stops: mapStops,
+                selector: "#map",
+                currentStop: 1,
+                initialZoom: 3
+            });
+
+        }
+    }
+</script>
+
+<div>
+    <script>
+        var stops = @Html.Raw(Json.Serialize(Model.Stops));
+        showMap(stops);
+    </script>
+</div>

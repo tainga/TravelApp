@@ -71,7 +71,7 @@ namespace TravelApp
             );
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello New World!");
+                await context.Response.WriteAsync("Page not found :(");
             });
 
             seed.InsertSeedData();

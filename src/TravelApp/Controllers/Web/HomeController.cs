@@ -18,8 +18,9 @@ namespace TravelApp.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var repo = new TripsRepository(db);
-            return View(repo.GetAllTrips());
+            //var repo = new TripsRepository(db);
+            //return View(repo.GetAllTrips());
+            return View();
         }
         public IActionResult About()
         {
@@ -29,5 +30,16 @@ namespace TravelApp.Controllers
         {
             return View();
         }
+        public IActionResult AllTrips()
+        {
+            var repo = new TripsRepository(db);
+            return View(repo.GetAllTrips());
+        }
+        public IActionResult Trip(int id)
+        {
+            var repo = new TripsRepository(db);
+            return View(repo.GetTrip(id));
+        }
+
     }
 }
